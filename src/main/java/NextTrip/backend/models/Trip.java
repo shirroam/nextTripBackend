@@ -13,6 +13,10 @@ public class Trip {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int tripId;
 
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    private User user;
+
     @Column
     private String name;
 
