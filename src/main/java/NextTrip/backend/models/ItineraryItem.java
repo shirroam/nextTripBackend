@@ -13,6 +13,10 @@ public class ItineraryItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int itineraryItemId;
 
+    @ManyToOne
+    @JoinColumn(name = "itineraryId")
+    private Itinerary itinerary;
+
     @Column
     private String name;
 
