@@ -17,7 +17,7 @@ public class Trip {
     @JoinColumn(name = "userId")
     private User user;
 
-    @Column
+    @Column(unique = true, nullable = false)
     private String name;
 
     @Column

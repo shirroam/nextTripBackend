@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/trips")
@@ -23,5 +25,15 @@ public class TripsController {
         catch (Exception e) {
             return "ErrorBC: " + e;
         }
+    }
+
+    @GetMapping("/getAllTrips")
+    public List<Trip> getTrips(@RequestParam int userId) {
+        return tripService.getTrips(userId);
+    }
+
+    @GetMapping("/getTrip")
+    public Trip getTrip(@RequestParam int tripId) {
+        return tripService.getTrip(tripId);
     }
 }
