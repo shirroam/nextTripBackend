@@ -1,6 +1,8 @@
 package NextTrip.backend.services;
 
+import NextTrip.backend.models.Itinerary;
 import NextTrip.backend.models.Trip;
+import NextTrip.backend.repositories.ItineraryRepo;
 import NextTrip.backend.repositories.TripRepo;
 import NextTrip.backend.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +20,25 @@ public class TripService {
     @Autowired
     UserRepo userRepo;
 
+    @Autowired
+    ItineraryRepo itineraryRepo;
+
     //add a Trip to all existing Trips of user 1
     public String addTrip(Trip trip) {
 
+        //save input Trip to repo
         trip.setCreatedDate(new Date());
         trip.setStatus("upcoming");
         trip.setUser(userRepo.findById(1).get());
 
         tripRepo.save(trip);
+
+        //create itinerary for this new Trip
+        Itinerary itinerary = new Itinerary();
+        itinerary.setTrip(trip);
+        itinerary.setAmount(0);
+
+        itineraryRepo.save(itinerary);
         return "New trip added: " + trip.getName();
     }
 
