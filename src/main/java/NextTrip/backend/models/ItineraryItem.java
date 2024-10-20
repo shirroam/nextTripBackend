@@ -17,7 +17,7 @@ public class ItineraryItem {
     @JoinColumn(name = "itineraryId")
     private Itinerary itinerary;
 
-    @Column
+    @Column(unique = true, nullable = false)
     private String name;
 
     @Column
