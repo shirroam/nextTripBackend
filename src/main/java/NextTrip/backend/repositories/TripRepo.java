@@ -13,7 +13,7 @@ public interface TripRepo extends CrudRepository<Trip, Integer> {
 //    List<Trip> findByUser(int userId);
 
     @Query(
-            value = "SELECT t.* FROM Trip t WHERE t.user_id = ?1",
+            value = "SELECT t.* FROM trip t WHERE t.user_id = ?1",
             nativeQuery = true)
     List<Trip> findTripsByUserId(int userId);
 }
